@@ -1,7 +1,8 @@
 import ChatBox from "../chatbox/ChatBox";
 import Profile from "../../pages/Profile";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 import { useCart } from "../../context/CartContext";
 import { FiShoppingCart } from "react-icons/fi";
 import { Container, Nav, Navbar, Button, Badge } from "react-bootstrap";
@@ -23,19 +24,36 @@ export default function Header() {
 
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link as={Link} to="/">
+                <Nav.Link
+                  as={NavLink}
+                  to="/"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/about">
+                <Nav.Link
+                  as={NavLink}
+                  to="/about"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   About
                 </Nav.Link>
-                <Nav.Link as={Link} to="/profile">
+                <Nav.Link
+                  as={NavLink}
+                  to="/profile"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Profile
                 </Nav.Link>
-                {/* <Nav.Link as={Link} to="/history">
-                  History
-                </Nav.Link> */}
-                <Nav.Link as={Link} to="#">
+                <Nav.Link
+                  as={NavLink}
+                  to="/service"
+                  className="nav-link"
+                  activeClassName="active"
+                >
                   Services
                 </Nav.Link>
               </Nav>

@@ -12,6 +12,8 @@ import BestSellerPage from "./components/products/BestSellerPage";
 import AboutPage from "./pages/About";
 import ProfilePage from "./pages/Profile";
 import "./styles/layout.css"; // File CSS tambahan
+import ServicesPage from "./pages/Sevices";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/HowToShop" element={<HowToShop />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/service" element={<ServicesPage />} />
+          <Route path="/footer" element={<Footer />} />
         </Routes>
       </CartProvider>
     </div>

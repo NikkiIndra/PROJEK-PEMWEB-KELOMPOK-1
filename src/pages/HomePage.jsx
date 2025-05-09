@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import PromotionBanner from "../components/layout/PromotionBanner";
 import Header from "../components/layout/Header";
 import HeroSection from "../components/home/HeroSection";
-import CallToAction from "../components/home/CallToAction";
+import CallToAction from "../components/home/BestProduct";
 import ProductList from "../components/products/ProductList";
 import Modal from "../components/common/Modal";
 

@@ -135,7 +135,7 @@ const BestSellerPage = () => {
                     style={{
                       width: "100%",
                       height: "400px",
-                      objectFit: "cover",
+                      objectFit: "contain",
                       objectPosition: "center",
                     }}
                     className="p-3"

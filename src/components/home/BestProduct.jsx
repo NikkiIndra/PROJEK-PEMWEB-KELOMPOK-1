@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const CallToAction = () => {
+const BestProduk = () => {
   const navigate = useNavigate();
 
   const products = [
@@ -18,35 +18,35 @@ const CallToAction = () => {
       name: "SweetPants ",
       price: 35000,
       desc: "Men's Casual Versatile Drawstring Waist Sweatpants",
-      img: "https://th.bing.com/th/id/OIP.7KIsOvAVm-GVDcAL3QdYdwAAAA?w=197&h=197&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+      img: "https://images.ctfassets.net/hnk2vsx53n6l/3Tk1bjmKZNyQzvvhc0tO49/654a3fd92bb4960bc4222f96a2f8d80f/n0dynx1fl586seodjrzs.png?w=960&h=1200&fm=avif&f=center&fit=fill&q=80",
     },
     {
       id: 3,
       name: "Casual Trainer Sneakers",
       price: 35000,
       desc: "Unisex Casual Shoes, Size 36-45, Lace-Up Soft",
-      img: "https://th.bing.com/th/id/OIF.BJoScG62VtD6oJinRJ8SQg?w=151&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7"
+      img: "https://assets.pikiran-rakyat.com/crop/0x189:1200x941/720x0/webp/photo/2024/12/20/1854051616.jpg",
     },
     {
       id: 4,
       name: "Couple Shoes Women Casual Sneakers",
       price: 45000,
       desc: "New Fashionable Lace-Up Sport Casual Shoes, Unisex",
-      img: "https://th.bing.com/th/id/OIP.r4e_rFTIid5jddksQBla6QHaJ2?w=154&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+      img: "https://asset.kompas.com/crops/DyFCRCPmYx6KIYtr1yHFJqnz1c4=/54x7:848x537/1200x800/data/photo/2023/07/27/64c1e505229b5.jpg",
     },
     {
       id: 5,
       name: "Premium | Minimalist Brown T-Shirt",
       price: 35000,
       desc: "Solid Brown Regular T-Shirt",
-      img: "https://th.bing.com/th/id/OIP.dVIfy7vvU-6aiLfA8YXaGgHaE7?w=286&h=192&c=7&r=0&o=5&dpr=1.1&pid=1.7", // perhatikan huruf besar dan ".png"
+      img: "https://afraz.pk/cdn/shop/files/Coffeebrowncrewneckplaint-shirtformen_BuyonlinePakistan_Frontview_46753254244664.jpg?v=1721759181&width=713", // perhatikan huruf besar dan ".png"
     },
     {
       id: 6,
       name: "Elegant Shirt",
       price: 98000,
       desc: "Boxy Crew-Neck",
-      img: "https://th.bing.com/th/id/OIP.VpwsZRbfR_h5xfi4kXCJOAHaJ3?w=197&h=263&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+      img: "https://www.merchology.com/cdn/shop/products/5290P-Black-HTF_1024x1024.jpg?v=1699657662",
     },
   ];
 
@@ -88,8 +88,7 @@ const CallToAction = () => {
                 src={product.img}
                 style={{
                   height: "160px",
-                  objectFit: "contain",
-                  padding: "1rem",
+                  objectFit: "cover",
                   backgroundColor: "#f8fafc",
                   borderTopLeftRadius: "12px",
                   borderTopRightRadius: "12px",
@@ -122,4 +121,4 @@ const CallToAction = () => {
   );
 };
 
-export default CallToAction;
+export default BestProduk;
