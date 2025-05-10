@@ -8,14 +8,9 @@
 # testing
 /coverage
 
-# textbox
-/src/components/chatbox/ChatBox.jsx
-# profile
-/src/pages/profile.jsx
-# Services
-/src/pages/Services.jsx
-# Design
-/public/assets/design/Design.pdf
+
+
+
 
 # production
 /build
