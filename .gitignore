@@ -10,10 +10,12 @@
 
 # textbox
 /src/components/chatbox
-
 # profile
 /src/pages/profile.jsx
+# Services
 /src/pages/Services.jsx
+# Design
+/public/design/Design.pdf
 
 # production
 /build
