@@ -12,7 +12,7 @@ import BestSellerPage from "./components/products/BestSellerPage";
 import AboutPage from "./pages/About";
 import ProfilePage from "./pages/Profile";
 import "./styles/layout.css"; // File CSS tambahan
-import ServicesPage from "./pages/Sevices";
+import ServicesPage from "./pages/Services";
 import Footer from "./components/layout/Footer";
 
 function App() {

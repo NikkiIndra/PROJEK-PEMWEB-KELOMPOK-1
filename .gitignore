@@ -8,6 +8,13 @@
 # testing
 /coverage
 
+# textbox
+/src/components/chatbox
+
+# profile
+/src/pages/profile.jsx
+/src/pages/Services.jsx
+
 # production
 /build
 
