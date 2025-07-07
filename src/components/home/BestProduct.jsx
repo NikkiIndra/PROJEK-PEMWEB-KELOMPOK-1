@@ -107,7 +107,7 @@ const BestProduk = () => {
                 <Card.Title
                   style={{ fontSize: "0.95rem", marginBottom: "0.3rem" }}
                 >
-                  {product.title}
+                  {product.name}
                 </Card.Title>
                 <div style={{ fontWeight: "bold", fontSize: "0.9rem" }}>
                   {product.price}

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const CartContext = createContext();
 
@@ -13,17 +14,27 @@ export function CartProvider({ children }) {
   }, [cart]);
 
   const addToCart = (product, quantity = 1) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
+    const exists = cart.find((item) => item.id === product.id);
+    const updatedItem = exists
+      ? { ...product, qty: (product.qty || 0) + quantity }
+      : { ...product, qty: quantity };
 
-      if (existingItem) {
-        return prevCart.map((item) =>
+    const newCart = exists
+      ? cart.map((item) =>
           item.id === product.id ? { ...item, qty: item.qty + quantity } : item
-        );
-      }
+        )
+      : [...cart, updatedItem];
 
-      return [...prevCart, { ...product, qty: quantity }];
-    });
+    setCart(newCart);
+
+    // ✅ Efek samping (simpan ke DB) DI LUAR setCart
+    axios
+      .post(
+        "http://localhost/Template-Ecommers-Pemweb/src/backend/save_cart.php",
+        [updatedItem]
+      )
+      .then((res) => console.log("✅ Disimpan ke DB:", res.data))
+      .catch((err) => console.error("❌ Gagal simpan:", err));
   };
 
   const cartCount = cart.reduce((total, item) => total + item.qty, 0);
@@ -36,32 +47,82 @@ export function CartProvider({ children }) {
     );
   };
 
+  const saveCartToServer = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost/Template-Ecommers-Pemweb/src/backend/save_cart.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cart),
+        }
+      );
+
+      const result = await response.json();
+      console.log("Server Response:", result);
+    } catch (error) {
+      console.error("Error saving cart:", error);
+    }
+  };
+
   const reduceQty = (id) => {
     setCart((prev) =>
       prev.flatMap((item) => {
         if (item.id === id) {
           if (item.qty <= 1) {
             const confirmDelete = window.confirm("Jumlah 0. Hapus produk ini?");
-            return confirmDelete ? [] : [item];
+            if (confirmDelete) {
+              axios
+                .delete(
+                  "http://localhost/Template-Ecommers-Pemweb/src/backend/delete_cart.php",
+                  {
+                    data: { product_id: id },
+                  }
+                )
+                .then((res) => console.log("🗑️ Dihapus dari DB:", res.data))
+                .catch((err) => console.error("❌ Gagal hapus dari DB:", err));
+
+              return [];
+            }
+            return [item];
           }
-          return { ...item, qty: item.qty - 1 };
+
+          const updatedItem = { ...item, qty: item.qty - 1 };
+
+          // ✅ Kirim qty baru ke database
+          axios
+            .post(
+              "http://localhost/Template-Ecommers-Pemweb/src/backend/update_qty.php",
+              {
+                product_id: updatedItem.id,
+                qty: updatedItem.qty,
+              }
+            )
+            .then((res) => console.log("🛠️ Qty diperbarui di DB:", res.data))
+            .catch((err) => console.error("❌ Gagal update qty:", err));
+
+          return [updatedItem];
         }
-        return item;
+
+        return [item];
       })
     );
   };
 
-  <CartContext.Provider
-    value={{
-      cart,
-      addToCart,
-      cartCount,
-      addQty,
-      reduceQty, // ✅ ini penting
-    }}
-  >
-    {children}
-  </CartContext.Provider>;
+  // <CartContext.Provider
+  //   value={{
+  //     cart,
+  //     addToCart,
+  //     cartCount,
+  //     addQty,
+  //     reduceQty, // ✅ ini penting
+  //     saveCartToServer, // ini akan menyimpan data ke database laragon
+  //   }}
+  // >
+  //   {children}
+  // </CartContext.Provider>;
 
   return (
     <CartContext.Provider

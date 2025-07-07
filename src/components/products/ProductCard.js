@@ -1,7 +1,10 @@
-import { Card, Button, Badge } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { FaCartPlus } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
 
-export default function ProductCard({ product, onAddToCart }) {
+export default function ProductCard({ product }) {
+  const { addToCart } = useCart();
+
   const formatRupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -11,7 +14,7 @@ export default function ProductCard({ product, onAddToCart }) {
   };
 
   return (
-    <Card className="h-100 shadow-sm border-0 product-card">
+    <Card className="h-100 shadow-sm border-0">
       <Card.Img
         variant="top"
         src={product.img}
@@ -30,7 +33,7 @@ export default function ProductCard({ product, onAddToCart }) {
           <Button
             variant="outline-primary"
             size="sm"
-            onClick={() => onAddToCart(product)}
+            onClick={() => addToCart(product)}
             className="d-flex align-items-center gap-1"
           >
             <FaCartPlus size={14} />

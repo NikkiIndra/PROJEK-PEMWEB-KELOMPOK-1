@@ -1,4 +1,3 @@
-// App.js
 import { Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
 import HowToShop from "./pages/HowToShop";
@@ -11,24 +10,30 @@ import NotFound from "./pages/NotFound";
 import BestSellerPage from "./components/products/BestSellerPage";
 import AboutPage from "./pages/About";
 import ProfilePage from "./pages/Profile";
-import "./styles/layout.css"; // File CSS tambahan
 import ServicesPage from "./pages/Services";
 import Footer from "./components/layout/Footer";
+import Register from "./pages/register"; // ✅ Tambahkan ini
+import Login from "./pages/login"; // ✅ Tambahkan ini
+
+import "./styles/layout.css";
 
 function App() {
   return (
     <div className="app-container">
       <CartProvider>
         <Routes>
-          <Route path="/best-seller" element={<BestSellerPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/best-seller" element={<BestSellerPage />} />
           <Route path="/HowToShop" element={<HowToShop />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/service" element={<ServicesPage />} />
           <Route path="/footer" element={<Footer />} />
+          <Route path="/register" element={<Register />} />{" "}
+          {/* ✅ Route baru */}
+          <Route path="/login" element={<Login />} /> {/* ✅ Route baru */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </CartProvider>
     </div>
