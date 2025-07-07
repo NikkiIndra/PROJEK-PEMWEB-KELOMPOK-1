@@ -1,6 +1,6 @@
 # Halo Guys Ini adalah tugas kulih Kita Kelompok 1 di matakuliah Pemrograman Web 🙌
 
-### jadi projek ini adalah projek web E-Commers dengan integrasi database lokal yang pastinya sudah konsum API ya
+### jadi projek ini adalah web E-Commers dengan integrasi ke database lokal yang pastinya sudah konsum API ya
 
 ### Apa Saja Yang Di gunakan Di Projek ini?
 

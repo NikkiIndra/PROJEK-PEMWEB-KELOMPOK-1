@@ -12,8 +12,6 @@ import AboutPage from "./pages/About";
 import ProfilePage from "./pages/Profile";
 import ServicesPage from "./pages/Services";
 import Footer from "./components/layout/Footer";
-import Register from "./pages/register"; // ✅ Tambahkan ini
-import Login from "./pages/login"; // ✅ Tambahkan ini
 
 import "./styles/layout.css";
 
@@ -30,9 +28,6 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/service" element={<ServicesPage />} />
           <Route path="/footer" element={<Footer />} />
-          <Route path="/register" element={<Register />} />{" "}
-          {/* ✅ Route baru */}
-          <Route path="/login" element={<Login />} /> {/* ✅ Route baru */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </CartProvider>

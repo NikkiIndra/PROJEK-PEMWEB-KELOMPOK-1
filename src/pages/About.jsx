@@ -248,7 +248,7 @@ const AboutPage = () => {
                         }}
                       />
                       <Card.Body>
-                        <h4>Nkiiiiiii_</h4>
+                        <h4>Aura Navs</h4>
                         <small>Designer 2</small>
                       </Card.Body>
                     </Card>
