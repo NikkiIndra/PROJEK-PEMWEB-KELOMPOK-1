@@ -17,4 +17,5 @@
 
 #### Demo Aplikasi
 
-![Demo aplikasi](public\assets\demo\demoWebApp.gif)
+![Demo aplikasi](public/assets/demo/demoWebApp.gif)
+
