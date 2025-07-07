@@ -1,8 +1,8 @@
-#### Halo Guys Ini adalah tugas kulih Kita Kelompok 1 dimatakuliah Pemrograman Web 🙌
+# Halo Guys Ini adalah tugas kulih Kita Kelompok 1 di matakuliah Pemrograman Web 🙌
 
 ### jadi projek ini adalah projek web E-Commers dengan integrasi database lokal yang pastinya sudah konsum API ya
 
-#### Apa Saja Yang Di gunakan Di Projek ini?
+### Apa Saja Yang Di gunakan Di Projek ini?
 
 ## Database
 
@@ -15,7 +15,9 @@
 <img src ="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E">
 <img src ="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white">
 
-#### Demo Aplikasi
+### 🎥 Demo Aplikasi
 
-![Demo aplikasi](public/assets/demo/demoWebApp.gif)
-
+<p align="center">
+  <img src="public/assets/demo/demoWebApp.gif" width="300"/>
+  <img src="public/assets/demo/demo1.png" width="300"/>
+</p>
