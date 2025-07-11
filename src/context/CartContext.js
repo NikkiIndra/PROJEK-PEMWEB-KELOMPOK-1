@@ -27,7 +27,6 @@ export function CartProvider({ children }) {
 
     setCart(newCart);
 
-    // ✅ Efek samping (simpan ke DB) DI LUAR setCart
     axios
       .post(
         "http://localhost/Template-Ecommers-Pemweb/src/backend/save_cart.php",
@@ -39,14 +38,32 @@ export function CartProvider({ children }) {
 
   const cartCount = cart.reduce((total, item) => total + item.qty, 0);
 
+  // Fungsi untuk menambah jumlah produk di keranjang
   const addQty = (id) => {
-    setCart((prev) =>
-      prev.map((item) =>
+    setCart((prev) => {
+      const updatedCart = prev.map((item) =>
         item.id === id ? { ...item, qty: item.qty + 1 } : item
-      )
-    );
+      );
+
+      const updatedItem = updatedCart.find((item) => item.id === id);
+
+      // ✅ Kirim update ke database juga
+      axios
+        .post(
+          "http://localhost/Template-Ecommers-Pemweb/src/backend/update_qty.php",
+          {
+            product_id: updatedItem.id,
+            qty: updatedItem.qty,
+          }
+        )
+        .then((res) => console.log("🆙 Qty bertambah di DB:", res.data))
+        .catch((err) => console.error("❌ Gagal update qty:", err));
+
+      return updatedCart;
+    });
   };
 
+  // Simpan keranjang ke server
   const saveCartToServer = async () => {
     try {
       const response = await fetch(
@@ -91,7 +108,7 @@ export function CartProvider({ children }) {
 
           const updatedItem = { ...item, qty: item.qty - 1 };
 
-          // ✅ Kirim qty baru ke database
+          // Kirim qty baru ke database
           axios
             .post(
               "http://localhost/Template-Ecommers-Pemweb/src/backend/update_qty.php",
@@ -110,19 +127,6 @@ export function CartProvider({ children }) {
       })
     );
   };
-
-  // <CartContext.Provider
-  //   value={{
-  //     cart,
-  //     addToCart,
-  //     cartCount,
-  //     addQty,
-  //     reduceQty, // ✅ ini penting
-  //     saveCartToServer, // ini akan menyimpan data ke database laragon
-  //   }}
-  // >
-  //   {children}
-  // </CartContext.Provider>;
 
   return (
     <CartContext.Provider
