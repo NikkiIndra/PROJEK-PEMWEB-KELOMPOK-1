@@ -1,32 +1,43 @@
+// Import React hook dan axios
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+// Buat konteks global untuk keranjang belanja
 const CartContext = createContext();
 
+// Komponen provider yang membungkus seluruh aplikasi agar bisa mengakses cart
 export function CartProvider({ children }) {
+  // State utama untuk menyimpan daftar produk di keranjang
   const [cart, setCart] = useState(() => {
+    // Ambil data cart dari localStorage saat pertama kali dijalankan
     const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
+    return savedCart ? JSON.parse(savedCart) : []; // Jika ada, gunakan, jika tidak, mulai dengan array kosong
   });
 
+  // Setiap kali cart berubah, simpan ke localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  // Fungsi untuk menambahkan produk ke dalam cart
   const addToCart = (product, quantity = 1) => {
-    const exists = cart.find((item) => item.id === product.id);
+    const exists = cart.find((item) => item.id === product.id); // Cek apakah produk sudah ada
+
+    // Jika sudah ada, tambahkan jumlahnya; jika belum, buat baru
     const updatedItem = exists
       ? { ...product, qty: (product.qty || 0) + quantity }
       : { ...product, qty: quantity };
 
+    // Update cart dengan item baru atau jumlah yang ditambahkan
     const newCart = exists
       ? cart.map((item) =>
           item.id === product.id ? { ...item, qty: item.qty + quantity } : item
         )
       : [...cart, updatedItem];
 
-    setCart(newCart);
+    setCart(newCart); // Simpan ke state
 
+    // Simpan juga ke server menggunakan PHP backend
     axios
       .post(
         "http://localhost/Template-Ecommers-Pemweb/src/backend/save_cart.php",
@@ -36,9 +47,10 @@ export function CartProvider({ children }) {
       .catch((err) => console.error("❌ Gagal simpan:", err));
   };
 
+  // Hitung total item dalam cart (untuk ditampilkan di ikon cart)
   const cartCount = cart.reduce((total, item) => total + item.qty, 0);
 
-  // Fungsi untuk menambah jumlah produk di keranjang
+  // Fungsi untuk menambah jumlah qty dari produk tertentu
   const addQty = (id) => {
     setCart((prev) => {
       const updatedCart = prev.map((item) =>
@@ -47,7 +59,7 @@ export function CartProvider({ children }) {
 
       const updatedItem = updatedCart.find((item) => item.id === id);
 
-      // ✅ Kirim update ke database juga
+      // Kirim update qty ke server
       axios
         .post(
           "http://localhost/Template-Ecommers-Pemweb/src/backend/update_qty.php",
@@ -63,7 +75,7 @@ export function CartProvider({ children }) {
     });
   };
 
-  // Simpan keranjang ke server
+  // Fungsi untuk menyimpan seluruh keranjang ke server secara manual
   const saveCartToServer = async () => {
     try {
       const response = await fetch(
@@ -84,10 +96,12 @@ export function CartProvider({ children }) {
     }
   };
 
+  // Fungsi untuk mengurangi jumlah qty dari produk tertentu
   const reduceQty = (id) => {
     setCart((prev) =>
       prev.flatMap((item) => {
         if (item.id === id) {
+          // Jika qty tinggal 1, konfirmasi untuk menghapus
           if (item.qty <= 1) {
             const confirmDelete = window.confirm("Jumlah 0. Hapus produk ini?");
             if (confirmDelete) {
@@ -101,14 +115,14 @@ export function CartProvider({ children }) {
                 .then((res) => console.log("🗑️ Dihapus dari DB:", res.data))
                 .catch((err) => console.error("❌ Gagal hapus dari DB:", err));
 
-              return [];
+              return []; // Hapus item dari cart
             }
-            return [item];
+            return [item]; // Kalau tidak dihapus, tetap tampilkan item
           }
 
+          // Kurangi qty dan update ke database
           const updatedItem = { ...item, qty: item.qty - 1 };
 
-          // Kirim qty baru ke database
           axios
             .post(
               "http://localhost/Template-Ecommers-Pemweb/src/backend/update_qty.php",
@@ -123,11 +137,12 @@ export function CartProvider({ children }) {
           return [updatedItem];
         }
 
-        return [item];
+        return [item]; // Item selain yang dimodifikasi tetap
       })
     );
   };
 
+  // Kirim semua fungsi dan data cart ke komponen lain
   return (
     <CartContext.Provider
       value={{ cart, addToCart, cartCount, addQty, reduceQty }}
@@ -137,6 +152,7 @@ export function CartProvider({ children }) {
   );
 }
 
+// Custom hook agar bisa digunakan di mana saja
 export function useCart() {
   return useContext(CartContext);
 }
