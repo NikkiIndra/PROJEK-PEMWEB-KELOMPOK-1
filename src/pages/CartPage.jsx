@@ -32,7 +32,7 @@ export default function CartPage() {
     return encodeURIComponent(message);
   };
 
-  const whatsappLink = `https://wa.me/628123456789?text=${createWhatsAppMessage()}`;
+  const whatsappLink = `https://wa.me/6287744404493?text=${createWhatsAppMessage()}`;
 
   return (
     <div className="bg-light min-vh-100">
