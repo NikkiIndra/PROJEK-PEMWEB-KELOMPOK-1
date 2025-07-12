@@ -5,7 +5,7 @@ import Header from "../components/layout/Header";
 import HeroSection from "../components/home/HeroSection";
 import CallToAction from "../components/home/BestProduct";
 import ProductList from "../components/products/ProductList";
-import Modal from "../components/common/Modal";
+import Modal from "../components/common/Modal.js";
 import axios from "axios";
 
 export default function HomePage() {
