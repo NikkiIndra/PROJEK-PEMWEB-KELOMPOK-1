@@ -3,7 +3,7 @@
 ### jadi projek ini adalah web E-Commers dengan integrasi ke database lokal yang pastinya sudah konsum API ya
 
 ### Berikut ini link ![YOUTEBE](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white) presentasi projek kami kelompok 1
-![Nikki Indra Syaputra] (https://youtu.be/ty3wf2wl9EA)
+![Nikki Indra Syaputra](https://youtu.be/ty3wf2wl9EA)
 
 ### Apa Saja Yang Di gunakan Di Projek ini?
 
