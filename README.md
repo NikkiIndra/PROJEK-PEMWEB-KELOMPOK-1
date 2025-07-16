@@ -2,6 +2,8 @@
 
 ### jadi projek ini adalah web E-Commers dengan integrasi ke database lokal yang pastinya sudah konsum API ya
 
+### BErikut INI LINK  ![YOUTEBE](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)
+
 ### Apa Saja Yang Di gunakan Di Projek ini?
 
 ## Database
